@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from tqdm import tqdm  # Import tqdm for the progress bar
 
 # Function to read a file, attempting to decode it with UTF-8
@@ -18,7 +19,6 @@ def load_json_prapr(source_directory, json_file):
 
     # Count the total number of leaf folders (folders without subfolders)
     leaf_folders = [root_folder for root_folder, subfolders, _ in os.walk(source_directory) if not subfolders]
-    print(len(leaf_folders))  # Print the number of leaf folders for verification
 
     # Use tqdm in the loop to show progress while processing the leaf folders
     for root_folder in tqdm(leaf_folders, desc="Processing leaf folders"):
@@ -57,7 +57,7 @@ def load_json_prapr(source_directory, json_file):
                 'fixed': fixed_content,
                 'correct': correct_file_exists
             })
-
+    
     # Save the collected data to a JSON file after the loop ends
     with open(json_file, 'w', encoding='utf-8') as json_output:
         json.dump(data, json_output, indent=4, ensure_ascii=False)  # Save with indent for readability
@@ -68,7 +68,13 @@ def load_json_ASE(source_directory, json_file, correct):
 
     # Count the total number of leaf folders
     leaf_folders = [root_folder for root_folder, subfolders, _ in os.walk(source_directory) if not subfolders]
-    print(len(leaf_folders))  # Print the number of leaf folders for verification
+
+    if os.path.exists(json_file):
+        try:
+            with open(json_file, 'r', encoding='utf-8') as json_input:
+                existing_data = json.load(json_input)
+        except: existing_data = []
+    else: existing_data = []
 
     # Use tqdm to show progress while processing the leaf folders
     for root_folder in tqdm(leaf_folders, desc="Processing leaf folders"):
@@ -109,7 +115,7 @@ def load_json_ASE(source_directory, json_file, correct):
 
         # Save the updated data to the JSON file
         with open(json_file, 'w', encoding='utf-8') as json_output:
-            json.dump(data, json_output, indent=5, ensure_ascii=False)  # Save with indent for readability
+            json.dump(existing_data+data, json_output, indent=5, ensure_ascii=False)  # Save with indent for readability
 
 # Function to count how many entries in the JSON file have the 'correct' field set to a specific value
 def count_correct(json_path, correct):
@@ -123,6 +129,23 @@ def count_correct(json_path, correct):
     return count  # Return the count
 
 
+def shuffle_json(file_path):
+    with open(file_path, 'r') as archivo:
+        datos = json.load(archivo)
+    
+    if isinstance(datos, list):
+        random.shuffle(datos)
+    elif isinstance(datos, dict):
+        items = list(datos.items())
+        random.shuffle(items)
+        datos = dict(items)
+    else:
+        print("El formato del archivo no es ni lista ni diccionario. No se puede desordenar.")
+        return
 
+    with open(file_path, 'w') as archivo:
+        json.dump(datos, archivo, indent=4)
+    
+    print(f"Archivo desordenado y guardado como '{file_path}'.")
 
 
