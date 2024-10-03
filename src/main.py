@@ -1,5 +1,4 @@
 from extract import load_json_ASE, load_json_prapr, count_correct, shuffle_json
-import os
 
 prapr_12 = "Datasets\\prapr_src_patches_1.2"
 prapr_20 = "Datasets\\prapr_src_patches_2.0"
