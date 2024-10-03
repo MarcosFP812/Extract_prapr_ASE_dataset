@@ -31,7 +31,7 @@ def load_json_prapr(source_directory, json_file):
 
         # Loop through the files in the folder and collect necessary data
         for file in files:
-            full_path = root_folder + "\\" + file  # Create full path for the file
+            full_path = root_folder + "/" + file  # Create full path for the file
 
             # If the file name starts with "ori-", it's the original file
             if file.startswith("ori-"):
@@ -87,7 +87,7 @@ def load_json_ASE(source_directory, json_file, correct):
 
         # Loop through the files in the folder and collect the necessary data
         for file in files:
-            full_path = root_folder + "\\" + file  # Create full path for the file
+            full_path = root_folder + "/" + file  # Create full path for the file
 
             # If the file starts with "buggy", it's an original (buggy) file
             if file.startswith("buggy"):

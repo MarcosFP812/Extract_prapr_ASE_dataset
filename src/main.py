@@ -1,15 +1,15 @@
 from extract import load_json_ASE, load_json_prapr, count_correct, shuffle_json
 
-prapr_12 = "Datasets\\prapr_src_patches_1.2"
-prapr_20 = "Datasets\\prapr_src_patches_2.0"
-ASE_ICSE_C = "Datasets\\ASE_Patches\\Patches_ICSE\\Dcorrect"
-ASE_ICSE_O = "Datasets\\ASE_Patches\\Patches_ICSE\\Doverfitting"
-ASE_other_C = "Datasets\\ASE_Patches\\Patches_others\\Dcorrect"
-ASE_other_O = "Datasets\\ASE_Patches\\Patches_others\\Doverfitting"
+prapr_12 = "Datasets/prapr_src_patches_1.2"
+prapr_20 = "Datasets/prapr_src_patches_2.0"
+ASE_ICSE_C = "Datasets/ASE_Patches/Patches_ICSE/Dcorrect"
+ASE_ICSE_O = "Datasets/ASE_Patches/Patches_ICSE/Doverfitting"
+ASE_other_C = "Datasets/ASE_Patches/Patches_others/Dcorrect"
+ASE_other_O = "Datasets/ASE_Patches/Patches_others/Doverfitting"
 
-prapr12_json = "json\\prapr12.json"
-prapr20_json = "json\\prapr20.json"
-ASE_json = "json\\ASE.json"
+prapr12_json = "json/prapr12.json"
+prapr20_json = "json/prapr20.json"
+ASE_json = "json/ASE.json"
 
 
 load_json_prapr(prapr_12, prapr12_json)
